@@ -432,6 +432,11 @@ int Client::process(string url, string method, const char* upload_data, size_t* 
         MHD_add_response_header(response, it->first.c_str(), it->second.c_str());
     }
 
+    MHD_add_response_header(response, "X-Frame-Options", "Deny");
+    MHD_add_response_header(response, "X-XSS-Protection", "1");
+    MHD_add_response_header(response, "X-Content-Type-Options", "nosniff");
+    MHD_add_response_header(response, "Referrer-Policy", "same-origin");
+
     if (headers.count("Origin"))
     {
         MHD_add_response_header(response, "Access-Control-Allow-Origin", headers["Origin"].c_str());

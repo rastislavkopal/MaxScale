@@ -387,6 +387,7 @@ int Client::process(string url, string method, const char* upload_data, size_t* 
             .sign(jwt::algorithm::hs256 {this_unit.sign_key});
 
         data = "{\"token\":\"" + token + "\"}";
+        reply = HttpResponse(MHD_HTTP_OK);
     }
     else if (access(effective_pathz, R_OK) == 0)
     {

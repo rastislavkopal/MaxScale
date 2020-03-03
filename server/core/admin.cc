@@ -434,7 +434,6 @@ int Client::process(string url, string method, const char* upload_data, size_t* 
 
     MHD_add_response_header(response, "X-Frame-Options", "Deny");
     MHD_add_response_header(response, "X-XSS-Protection", "1");
-    MHD_add_response_header(response, "X-Content-Type-Options", "nosniff");
     MHD_add_response_header(response, "Referrer-Policy", "same-origin");
 
     if (headers.count("Origin"))
